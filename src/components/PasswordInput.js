@@ -5,26 +5,23 @@ const PasswordField = styled.input`
   border: 3px solid blue;
   outline: none;
   font-size: 2rem;
-  background: ${props => [
-    props.pass.length < 10
-      ? [
-          props.pass.length !== 0
-            ? `hsl(calc(${props.pass.length}*10), 100%, 50%)`
-            : ""
-        ]
-      : "hsl(100, 100%, 50%)"
-  ]};
+  background: ${props =>
+    props.value.length < 10
+      ? props.value.length !== 0
+        ? `hsl(calc(${props.value.length}*10), 100%, 50%)`
+        : ""
+      : "hsl(100, 100%, 50%)"};
 `;
 
 export default function PasswordInput({ value }) {
-  const { pass, setPass } = React.useState("");
+  const [password, setPassword] = React.useState(value || "");
   return (
     <>
       <PasswordField
         type="password"
-        value={pass}
+        value={password}
         onChange={e => {
-          setPass(e.target.value);
+          setPassword(e.target.value);
         }}
       ></PasswordField>
     </>
